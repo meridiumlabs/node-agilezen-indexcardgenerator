@@ -1,6 +1,6 @@
-# Score Card Generator for AgileZen
+# Index Card Generator for AgileZen
 
-A quick and - yes - dirty hook towards [AgileZen](http://www.agilezen.com) to extract stories from a specified project generating score cards with story contents.
+A quick and - yes - dirty hook towards [AgileZen](http://www.agilezen.com) to extract stories from a specified project generating index cards with story contents.
 
 ## Installation
 
@@ -16,3 +16,7 @@ Fire up your favourite command line tool and run following commands:
 1. Node.js is mandatory for this to even work and you'll need to have an account at [AgileZen](http://www.agilezen.com).
 2. You'll need to get an API key from AgileZen to be able to make requests to your projects.
 3. You'll need a project id (int) wich you can retrieve from the URL of the project in AgileZen.
+
+## Recognitions
+
+This tool is inspired by the [Index card generator](http://blog.crisp.se/2007/12/18/henrikkniberg/1197973740000).

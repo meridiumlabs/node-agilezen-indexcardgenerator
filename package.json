@@ -1,7 +1,7 @@
 {
-  "name": "agilezen-cardgenerator",
+  "name": "agilezen-indexcardgenerator",
   "version": "1.0.0",
-  "description": "A simple hook for AgileZen to generate score cards from a specific project",
+  "description": "A simple hook for AgileZen to generate index cards from a specific project",
   "main": "service.js",
   "scripts": {
     "start": "node service.js"
