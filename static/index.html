@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AgileZen Score Cards</title>
+    <script src="https://fb.me/react-0.13.2.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.2.js"></script>
+    <link href="../static/style.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:900,900italic,400italic,300,700,400" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/javascript">
+        var stories = {{dataArray}};
+        function getData() {
+          return stories;
+        }
+    </script>
+    <script type="text/jsx">
+      /** @jsx React.DOM */
+    var List = React.createClass({
+      getInitialState: function(props) {
+        props = props || this.props;
+        return {
+          data : props.data || getData(),
+          key : props.key
+        };
+      },
+
+      render : function() {
+
+        console.log(this.state.data);
+        var storiesAsList = this.state.data.map(function(story) {
+          return(
+              <Story
+                key={story.id}
+                id={story.id}
+                text={story.text}
+                details={story.details}
+                priority={story.priority}
+                size={story.size}
+                project={story.project} />
+            );
+        });
+
+        return (
+          <ol className="cards">
+            {storiesAsList}
+          </ol>
+        );
+      }
+
+    });
+
+    var Story = React.createClass({
+
+    getInitialState: function(props) {
+      props = props || this.props;
+      return {
+          key: props.key,
+          id : props.id,
+          text: props.text,
+          details : props.details,
+          size : props.size,
+          priority: props.priority,
+          project : props.project,
+        };
+    },
+
+    componentWillReceiveProps : function(newProps, oldProps) {
+      this.setState(this.getInitialState(newProps));
+    },
+
+    componentDidMount : function() {
+      var self = this;
+    },
+
+    render : function() {
+
+    var itemPriority = ((this.props.priority !== undefined && this.props.priority !== null && this.props.priority.length > 0) ? this.props.priority.toString() : '-'),
+        itemEstimate = ((this.props.size !== undefined && this.props.size !== null && this.props.size.length > 0) ? this.props.size : '0');
+
+      return (
+        <li className="card">
+          <div className="card-holder">
+            <div className="card-wrapper">
+                <h3>{this.props.project}</h3>
+                <h2 dangerouslySetInnerHTML={{__html: '#' + this.props.id + ' ' + this.props.text}}/>
+                <div dangerouslySetInnerHTML={{__html: this.props.details}} />
+            </div>
+            <div className="box box-size">
+              <h4>Storlek</h4>
+              <strong>{itemEstimate}</strong>
+            </div>
+            <div className="box box-priority">
+              <h4>Prioritet</h4>
+              <strong>{itemPriority}</strong>
+            </div>
+          </div>
+        </li>
+      );
+  }
+});
+
+    React.render(
+      <List />,
+      document.getElementById('content')
+    );
+    </script>
+  </body>
+</html>
