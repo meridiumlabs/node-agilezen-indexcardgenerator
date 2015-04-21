@@ -4,11 +4,10 @@ A quick and - yes - dirty hook towards [AgileZen](http://www.agilezen.com) to ex
 
 ## Installation
 
-Fire up your favourite command line tool and run following commands:
-
 1. Clone the repository (i.e. `git clone ...`)
-2. Run `npm install`
-3. Run `npm start`
+2. Configure config.js with project id and API-key
+2. Run `npm install` in your favourite command line tool
+3. Run `npm start` in the same favourite command line tool
 4. Voilá!
 
 ## Requirements
