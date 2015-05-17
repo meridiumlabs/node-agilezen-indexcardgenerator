@@ -42,16 +42,24 @@ var request = require('request'),
         }
 
         var result = data.replace(/{{dataArray}}/g, cleanStoriesAsString);
-        var outputName = './tmp/' + Math.floor(Date.now() / 1000) + '.html';
+        var tempDirectoryName = './tmp/';
 
-        fs.writeFile(outputName, result, {encoding: 'utf8'} , function (err) {
-          if (err) return console.log(err);
-          open(outputName, function(err) {
-            if(err) throw err;
+        fs.open(tempDirectoryName, 'r', function(err, fd) {
+
+          if(err) {
+            fs.mkdirSync(tempDirectoryName);
+          }
+
+          var outputName = tempDirectoryName + Math.floor(Date.now() / 1000) + '.html';
+
+          fs.writeFile(outputName, result, {encoding: 'utf8'} , function (err) {
+            if (err) return console.log(err);
+            open(outputName, function(err) {
+              if(err) throw err;
+            });
           });
         });
       });
-
     });
    }
 })();
